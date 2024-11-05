@@ -3,7 +3,7 @@
 .nav_box{
     width: 1920px;
     /* height: 148px; */
-    background-color: black;
+    background-color: rgb(46, 45, 45);
     display: flex;
     justify-content: space-between;
 }
@@ -46,7 +46,7 @@ color: white;
 font-weight: 700;
 font-size: 50px;
 text-transform: uppercase;
-color: black;
+color: white;
 padding-top: 50px;
 text-align: center;
 }
@@ -59,4 +59,137 @@ position: relative;
 z-index: -1;
 left: 670px;
 top: -115px;
+}
+
+
+.function{
+    width: 93px;
+    height: 34px;
+    margin-top: 57px;
+    margin-right: 120.36px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.catalog{
+    width: 1452px;
+height: auto;
+margin: auto;
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+gap:63px ;
+}
+
+.sneakers{
+    width: 442px;
+height: 442px;
+}
+
+.action{
+    width: 442px;
+height: 73px;
+display: flex;
+justify-content: space-between;
+}
+
+.add_to_cart{
+    width: 221px;
+height: 73px;
+background-color: rgb(69, 66, 66);
+font-family: "Roboto Condensed", sans-serif;
+font-weight: 700;
+font-size: 19px;
+color: white;
+border: none;
+
+}
+
+.price{
+    width: 225px;
+height: 73px;
+background-color: #AFED00;
+}
+
+.price_text{
+    font-family: "Roboto Condensed", sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    color: white;
+    text-align: center;
+}
+
+.sneaker_img{
+    width: 450px;
+height: 375px;
+}
+
+.footer{
+    width: 1920px;
+height: 539px;
+background-color: #000;
+}
+
+
+.footer_content{
+width: 1331px;
+height: 250px;
+display: flex;
+justify-content: space-between;
+gap: 138px;
+margin: auto;
+
+}
+
+.footer_container{
+    width: 183px;
+    height: 250px;
+    margin-top: 79px ;
+
+}
+
+
+.footer_main_text{
+    font-family:"Roboto", sans-serif ;
+font-weight: 700;
+font-size: 22px;
+line-height: 250%;
+text-transform: uppercase;
+color: white;
+white-space: nowrap;
+}
+
+.payment_img_container{
+    width: 90px;
+    height: 92px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap:5.38px ;
+}
+
+.footer_secondary_text{
+    font-family: "Roboto", sans-serif ;
+font-weight: 400;
+font-size: 20px;
+line-height: 200%;
+color: #7d7d7d;
+white-space: nowrap;
+}
+
+hr{
+    stroke-width: 1.48px;
+stroke:white;
+margin-top: 200px;
+}
+
+.end_content{
+    padding-left: 250px;
+}
+
+
+
+body{
+    background-color: #000;
 }
