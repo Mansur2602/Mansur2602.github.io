@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+.nav_box{
+    width: 1920px;
+    /* height: 148px; */
+    background-color: rgb(46, 45, 45);
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.logo{
+ margin-top: 37px;
+ margin-left: 114px;   
+}
+
+.menu{
+    width: 292px;
+    height: 36px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 63px;
+    
+
+}
+
+.menu ul {
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+    display: flex; 
+    justify-content: space-between;
+    gap: 55px;
+}
+
+.menu a {
+    text-decoration: none;
+    font-weight: 700;
+font-size: 20px;
+color: white;
+}
+
+body{
+    background-color: black;
+}
+
+
+.cart_container{
+background-color: ghostwhite;
+width: 1088px;
+height: 150px;
+margin: auto;
+margin-top: 100px;
+display: flex;
+justify-content: space-between;
+
+}
+
+.title{
+    font-family:"Roboto Condensed", sans-serif ;
+font-weight: 700;
+font-size: 50px;
+text-transform: uppercase;
+color: white;
+padding-top: 50px;
+text-align: center;
+}
+
+.function{
+    width: 93px;
+    height: 34px;
+    margin-top: 57px;
+    margin-right: 120.36px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.sneaker_img{
+width: 200px;
+height: 150px;
+}
+
+.text_box{
+    width: 190px;
+    height: 27px;
+    margin-top: 15px;
+}
+
+.sneaker_name{
+font-family: "Roboto Condensed", sans-serif;
+font-weight: 500;
+font-size: 22px;
+color: #1e1e1e;
+}
+
+.sneaker_model{
+font-family: "Roboto Condensed", sans-serif;
+font-weight: 500;
+font-size: 17px;
+color: #1e1e1e;
+}
+
+.count_number{
+font-family: "Roboto Condensed", sans-serif;
+font-weight: 600;
+font-size: 22px;
+line-height: 100%;
+color: #393939;
+
+}
+
+.count_box{
+    width: 36px;
+    height: 20px;
+    margin-top: 35px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.arrows{
+    width: 20px;
+    height: 20px;
+    margin-top: 9px;
+}
+
+.price{
+    font-family: "Roboto Condensed", sans-serif;
+font-weight: 600;
+font-size: 22px;
+line-height: 100%;
+color: #393939;
+padding-top: 35px;
+}
+
+.trash{
+    width: 30px;
+    height: 30px;
+    margin-top: 45px;
+}
