@@ -9,103 +9,105 @@ fetch('https://sneaker-database-stockx.p.rapidapi.com/stockx/sneakers?query=yeez
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data)
         const sneakers = data.data.results;
 
         sneakers.forEach(sneaker => {
             const sneakerContainer = document.createElement('div');
             sneakerContainer.classList.add('sneakers');
-            const action = document.createElement('div')
-            action.classList.add('action')
+            const action = document.createElement('div');
+            action.classList.add('action');
 
             const img = document.createElement('img');
             img.classList.add('sneaker_img');
             img.src = sneaker.media.smallImageUrl;
 
-            const name = document.createElement('h2')
-            name.classList.add('sneaker_name')
-            name.textContent = sneaker.name
+            const name = document.createElement('h2');
+            name.classList.add('sneaker_name');
+            name.textContent = sneaker.name;
             
+            const model = document.createElement('h2');
+            model.classList.add('sneaker_model');
+            model.textContent = sneaker.model;
 
             const addToCart = document.createElement('button');
             addToCart.classList.add('add_to_cart');
             addToCart.textContent = 'ADD TO CART';
-            action.append(addToCart)
-
+            action.append(addToCart);
             const price = document.createElement('div');
             price.classList.add('price');
             const priceText = document.createElement('h3');
             priceText.classList.add('price_text');
-
-            
             const retailPriceTrait = sneaker.productTraits.find(trait => trait.name === "Retail Price");
-            if (retailPriceTrait) {
-                priceText.textContent = `${retailPriceTrait.value}$`;
-                 
-            }
-
+            let retailPrice = retailPriceTrait ? parseFloat(retailPriceTrait.value) : 0;
+            priceText.textContent = `${retailPrice}$`;
             price.append(priceText);
-            action.append(price)
-            sneakerContainer.append(name, img, action) ;
+            action.append(price);
+
+            sneakerContainer.append(name, model, img, action);
             catalog.append(sneakerContainer);
+
+            addToCart.addEventListener('click', function() {
+                const productName = name.innerText;
+                const productPrice = retailPrice;
+                const productImage = img.src;
+                const productModel = model.innerText;
+
+                const currentUserEmail = localStorage.getItem('currentUserEmail');
+
+                if (currentUserEmail) {
+            
+                    addToCartFunction(currentUserEmail, productName, productPrice, productImage, productModel);
+                } else {
+                    alert("Please register or log in before adding items to your cart.");
+                    window.location.href = 'register.html'
+                }
+            });
         });
 
-   
+        function addToCartFunction(userEmail, productName, productPrice, productImage, productModel) {
+            let users = JSON.parse(localStorage.getItem('users')) || {};
 
-function checkRegistration() {
-    const isRegistered = localStorage.getItem('users')
+            if (users[userEmail]) {
+                let userCart = users[userEmail].cart || [];
 
-    if (!isRegistered) {
-        window.location.href = 'register.html';
-    }
-}
+                const existingItemIndex = userCart.findIndex(item => item.name === productName);
 
+                if (existingItemIndex > -1) {
+  
+                    userCart[existingItemIndex].quantity += 1;
+                    userCart[existingItemIndex].totalPrice = (userCart[existingItemIndex].quantity * productPrice).toFixed(2);
+                } else {
+                   
+                    const newItem = {
+                        name: productName,
+                        price: productPrice,
+                        image: productImage,
+                        model: productModel,
+                        quantity: 1,
+                        totalPrice: productPrice.toFixed(2)
+                    };
+                    userCart.push(newItem);
+                }
 
-function addToCart(productName, productPrice, productImage) {
-    const cartItem = {
-        name: productName,
-        price: parseFloat(productPrice),
-        image: productImage,
-        quantity: 1
-    };
+             
+                users[userEmail].cart = userCart;
+                localStorage.setItem('users', JSON.stringify(users));
 
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const existingItemIndex = cart.findIndex(item => item.name === productName);
-
-    if (existingItemIndex > -1) {
-        cart[existingItemIndex].quantity += 1;
-    } else {
-        cart.push(cartItem);
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-    alert('Product added to cart');
-}
-
-
-checkRegistration()
-
-document.querySelectorAll('.add_to_cart').forEach(button => {
-    button.addEventListener('click', function() {
-        const sneaker = this.closest('.sneakers');
-        const productName = sneaker.querySelector('.sneaker_name').innerText;
-        const productPrice = sneaker.querySelector('.price_text').innerText.replace('$', '');
-        const productImage = sneaker.querySelector('.sneaker_img').src;
-
-        if (localStorage.getItem('users')) {
-            addToCart(productName, productPrice, productImage);
-        } else {
-            alert("Please register before adding items to your cart.");
-            window.location.href = 'register.html'
+                alert('Product added to cart');
+            }
         }
-    });
-});
 
+        function checkRegistration() {
+            const currentUserEmail = localStorage.getItem('currentUserEmail');
 
+            if (!currentUserEmail) {
+                window.location.href = 'register.html'
+            }
+        }
 
-
-
-    });
+        checkRegistration();
+    })
+    .catch(error => console.error('Error fetching sneakers:', error));
 
 
 

@@ -85,6 +85,7 @@ gap:63px ;
 .sneakers{
     width: 442px;
 height: 442px;
+margin-top: 25px;
 }
 
 .action{
@@ -199,5 +200,12 @@ body{
     font-family:"Roboto Condensed", sans-serif ;
     font-weight: 700;
 font-size: 20px;
+color: white;
+}
+
+.sneaker_model{
+    font-family:"Roboto Condensed", sans-serif ;
+    font-weight: 700;
+font-size: 15px;
 color: white;
 }
