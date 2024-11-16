@@ -1,12 +1,10 @@
-
 const cartData = localStorage.getItem('users');
 const users = JSON.parse(cartData) || {};
-
 
 const currentUserEmail = localStorage.getItem('currentUserEmail');
 if (!currentUserEmail) {
     alert('Please log in to view your cart.');
-    window.location.href = 'login.html'
+    window.location.href = 'login.html';
 }
 
 let totalPrice = 0;
@@ -79,10 +77,9 @@ cart.forEach(item => {
     trashButton.addEventListener('click', () => {
         const itemIndex = cart.indexOf(item);
         if (itemIndex > -1) {
-            cart.splice(itemIndex, 1)
+            cart.splice(itemIndex, 1);
             users[currentUserEmail].cart = cart; 
             localStorage.setItem('users', JSON.stringify(users));
-
 
             cartContainer.remove();
             updateTotalPrice();
@@ -101,35 +98,51 @@ function updateTotalPrice() {
         totalPriceElement.textContent = `TOTAL PRICE: $${totalPrice.toFixed(2)}`;
         document.body.append(totalPriceElement);
         
-        addBuyButton();
+        if (totalPrice === 0) {
+            totalPriceElement.remove();
+        } else {
+            addBuyButton();
+        }
     } else {
         totalPriceElement.textContent = `TOTAL PRICE: $${totalPrice.toFixed(2)}`;
+        
+        if (totalPrice === 0) {
+            totalPriceElement.remove();
+            removeBuyButton();
+        }
     }
 }
 
 function addBuyButton() {
-    const buyButton = document.createElement('button');
-    buyButton.classList.add('buy-button');
-    buyButton.textContent = 'BUY';
-    
-    buyButton.addEventListener('click', () => {
-        alert('Thanks for your purchase!');
-        
-        delete users[currentUserEmail].cart;
-        localStorage.setItem('users', JSON.stringify(users));
+    if (!document.querySelector('.buy-button')) {
+        const buyButton = document.createElement('button');
+        buyButton.classList.add('buy-button');
+        buyButton.textContent = 'BUY';
 
-        document.querySelectorAll('.cart_container').forEach(container => container.remove());
-        const totalPriceElement = document.querySelector('.total-price');
-        if (totalPriceElement) {
-            totalPriceElement.remove();
-        }
+        buyButton.addEventListener('click', () => {
+            alert('Thanks for your purchase!');
+            
+            delete users[currentUserEmail].cart;
+            localStorage.setItem('users', JSON.stringify(users));
 
+            document.querySelectorAll('.cart_container').forEach(container => container.remove());
+            const totalPriceElement = document.querySelector('.total-price');
+            if (totalPriceElement) {
+                totalPriceElement.remove();
+            }
+
+            removeBuyButton();
+        });
+
+        document.body.append(buyButton);
+    }
+}
+
+function removeBuyButton() {
+    const buyButton = document.querySelector('.buy-button');
+    if (buyButton) {
         buyButton.remove();
-    });
-    
-    document.body.append(buyButton);
+    }
 }
 
 updateTotalPrice();
-
-
