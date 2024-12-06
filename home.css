@@ -84,13 +84,24 @@ text-align: center;
 margin-top: 639px;
 margin-left: 321px;
 padding-left: 50px;
+cursor: pointer;
+transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.shop_now:hover{
+    transform: scale(1.1);  
+    background-color: #2980b9; 
 }
 
 .content{
     width: 1920px;
 height: 932px;
 background-image: url('./media/Artboard\ 1\ copy.png');
+
 }
+
+
+
 
 .select_style{
     font-family:"Roboto Condensed", sans-serif ;
@@ -108,7 +119,7 @@ white-space: nowrap;
     width: 2000px;
     height: 535px;
     margin-top: 93px;
-
+    overflow: hidden;  
 display: flex;
 justify-content: space-between;
 gap: 30px;
@@ -377,4 +388,40 @@ margin-top: 200px;
 
 .end_content{
     padding-left: 250px;
+}
+
+
+.contents {
+    width: 1920px;
+    height: 932px;
+    overflow: hidden; /* Скрытие слайдов, которые не видны */
+    position: relative; /* Для правильной работы z-index */
+    transition: transform 0.7s ease; /* Плавный сдвиг */
+    display: flex;
+}
+
+.content {
+    min-width: 1920px; 
+    height: 932px;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    transition: opacity 0.7s ease;
+    opacity: 0; 
+    z-index: -1; 
+}
+
+.content.active {
+    opacity: 1; 
+    z-index: 1; 
+}
+
+#slide1 {
+    background-image: url('./media/Artboard 1 copy.png');
+   
+}
+
+#slide2 {
+    background-image: url('./media/Artboard 1.png');
+   
 }

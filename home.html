@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./home.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="nav_box">
@@ -21,9 +22,14 @@
 <!-- <img src="./media/🦆 icon _Search_.svg" alt=""> -->
           </div>
     </div>
-    <div class="content">
-    <button class="shop_now"  onclick="window.location.href = 'catalog.html'">SHOP NOW</button>
-</div>
+    <div class="contents">
+        <div class="content"  id="slide1" >
+        <button class="shop_now" onclick="window.location.href = 'catalog.html'">SHOP NOW</button>
+    </div>
+        <div class="content" id="slide2" >
+            <button class="shop_now"  onclick="window.location.href = 'catalog.html'">SHOP NOW</button>
+    </div>
+    </div>
 
     <div class="trackstore">
         <h2 class="trackstore_text">TrackStore gives you an easy way to create a captivating website for your urban sportswear brand. </h2>
@@ -34,9 +40,9 @@
 
     
     <div class="img_container">
-        <img src="./media/Pexels Photo by Julia Kuzenkov.png" alt="">
-       <img src="./media/unsplash_d3bYmnZ0ank.png" alt="">
-        <img src="./media/Pexels Photo by JÉSHOOTS.png" alt="">
+        <img class="carousel" src="./media/Pexels Photo by Julia Kuzenkov.png" alt="">
+       <img class="carousel" src="./media/unsplash_d3bYmnZ0ank.png" alt="">
+        <img class="carousel" src="./media/Pexels Photo by JÉSHOOTS.png" alt="">
     </div>
     <div class="position_img_container">
     <img class="asset" src="./media/Asset 1@3x 2.svg" alt="">
@@ -138,6 +144,6 @@
     
     
   
-   
+   <script src="./home.js"></script>
 </body>
 </html>

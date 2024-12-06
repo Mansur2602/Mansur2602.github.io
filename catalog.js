@@ -1,124 +1,117 @@
-const catalog = document.querySelector('.catalog');
-const searchInput = document.querySelector('.search');
-const filterSelect = document.querySelector('.select');
+const catalog = document.querySelector('.catalog')
+const searchInput = document.querySelector('.search')
+const filterSelect = document.querySelector('.select')
 
-let sneakers = [];
-
+let sneakers = []
 
 function displaySneakers(sneakersList) {
     catalog.innerHTML = ''
 
     sneakersList.forEach(sneaker => {
-        const sneakerContainer = document.createElement('div');
-        sneakerContainer.classList.add('sneakers');
-        const action = document.createElement('div');
-        action.classList.add('action');
+        const sneakerContainer = document.createElement('div')
+        sneakerContainer.classList.add('sneakers')
+        const action = document.createElement('div')
+        action.classList.add('action')
 
-        const img = document.createElement('img');
-        img.classList.add('sneaker_img');
-        img.src = sneaker.media.smallImageUrl;
+        const img = document.createElement('img')
+        img.classList.add('sneaker_img')
+        img.src = sneaker.poster.url
 
-        const name = document.createElement('h2');
-        name.classList.add('sneaker_name');
-        name.textContent = sneaker.name;
+        const name = document.createElement('h2')
+        name.classList.add('sneaker_name')
+        name.textContent = sneaker.alternativeName
 
-        const model = document.createElement('h2');
-        model.classList.add('sneaker_model');
-        model.textContent = sneaker.model;
+        const model = document.createElement('h2')
+        model.classList.add('sneaker_model')
+        model.textContent = sneaker.id
 
-        const addToCart = document.createElement('button');
-        addToCart.classList.add('add_to_cart');
-        addToCart.textContent = 'ADD TO CART';
-        action.append(addToCart);
+        const addToCart = document.createElement('button')
+        addToCart.classList.add('add_to_cart')
+        addToCart.textContent = 'ADD TO CART'
+        action.append(addToCart)
 
-        const price = document.createElement('div');
-        price.classList.add('price');
-        const priceText = document.createElement('h3');
-        priceText.classList.add('price_text');
-        const retailPriceTrait = sneaker.productTraits.find(trait => trait.name === "Retail Price");
-        let retailPrice = retailPriceTrait ? parseFloat(retailPriceTrait.value) : 0;
-        priceText.textContent = `${retailPrice}$`;
-        price.append(priceText);
-        action.append(price);
+        const price = document.createElement('div')
+        price.classList.add('price')
+        const priceText = document.createElement('h3')
+        priceText.classList.add('price_text')
+        priceText.textContent = `${sneaker.movieLength}$`
+        price.append(priceText)
+        action.append(price)
 
-        sneakerContainer.append(name, model, img, action);
-        catalog.append(sneakerContainer);
+        sneakerContainer.append(name, model, img, action)
+        catalog.append(sneakerContainer)
 
         addToCart.addEventListener('click', function() {
-            const productName = name.innerText;
-            const productPrice = retailPrice;
-            const productImage = img.src;
-            const productModel = model.innerText;
+            const productName = name.innerText
+            const productPrice = sneaker.id
+            const productImage = img.src
+            const productModel = model.innerText
 
-            const currentUserEmail = localStorage.getItem('currentUserEmail');
+            const currentUserEmail = localStorage.getItem('currentUserEmail')
 
             if (currentUserEmail) {
-                addToCartFunction(currentUserEmail, productName, productPrice, productImage, productModel);
+                addToCartFunction(currentUserEmail, productName, productPrice, productImage, productModel)
             } else {
-                alert("Please register or log in before adding items to your cart.");
-                window.location.href = 'register.html';
+                alert("Please register or log in before adding items to your cart.")
+                window.location.href = 'register.html'
             }
         });
     });
 }
 
-
 function searchSneakers(query) {
     const filteredSneakers = sneakers.filter(sneaker => {
-        return sneaker.name.toLowerCase().includes(query.toLowerCase());
+        return sneaker.alternativeName.toLowerCase().includes(query.toLowerCase());
     });
     displaySneakers(filteredSneakers);
 }
 
-
 function sortSneakers(option) {
     let sortedSneakers;
+
     if (option === "from_expensive") {
         sortedSneakers = [...sneakers].sort((a, b) => {
-            const priceA = parseFloat(a.productTraits.find(trait => trait.name === "Retail Price")?.value) || 0;
-            const priceB = parseFloat(b.productTraits.find(trait => trait.name === "Retail Price")?.value) || 0;
+            const priceA = parseFloat(a.movieLength) || 0
+            const priceB = parseFloat(b.movieLength) || 0
             return priceB - priceA
         });
-    } else if (option === "from_cheap") {
+    }
+   
+    else if (option === "from_cheap") {
         sortedSneakers = [...sneakers].sort((a, b) => {
-            const priceA = parseFloat(a.productTraits.find(trait => trait.name === "Retail Price")?.value) || 0;
-            const priceB = parseFloat(b.productTraits.find(trait => trait.name === "Retail Price")?.value) || 0;
+            const priceA = parseFloat(a.movieLength) || 0
+            const priceB = parseFloat(b.movieLength) || 0
             return priceA - priceB
         });
     } else {
-        sortedSneakers = [...sneakers]
+        sortedSneakers = sneakers
     }
 
-    displaySneakers(sortedSneakers)
+    displaySneakers(sortedSneakers);
 }
 
 
-fetch('https://sneaker-database-stockx.p.rapidapi.com/stockx/sneakers?query=yeezy&market=yeezy', 
+fetch('https://api.kinopoisk.dev/v1.4/movie/search?page=1&limit=10&query=%D0%93%D0%B0%D1%80%D1%80%D0%B8%20%D0%BF%D0%BE%D1%82%D1%82%D0%B5%D1%80', 
     { 
         headers: {
-            'x-rapidapi-key': 'd499744da0msh36294a2dd8c936ap1f0fd0jsnb6464ec9f597',
-            'x-rapidapi-host': 'sneaker-database-stockx.p.rapidapi.com'
+            'accept': 'application/json',
+            'X-API-KEY': 'FT44EKK-8H4MPNY-H0RHS15-Z5H22JZ'
         }
     })
     .then(response => response.json())
     .then(data => {
-        sneakers = data.data.results
-
-
-        displaySneakers(sneakers);
-
+        sneakers = data.docs
+        displaySneakers(sneakers)
 
         searchInput.addEventListener('input', (e) => {
-            searchSneakers(e.target.value);
+            searchSneakers(e.target.value)
         });
 
-
         filterSelect.addEventListener('change', (e) => {
-            sortSneakers(e.target.value);
+            sortSneakers(e.target.value)
         });
     })
     .catch(error => console.error('Error fetching sneakers:', error));
-
 
 function addToCartFunction(userEmail, productName, productPrice, productImage, productModel) {
     let users = JSON.parse(localStorage.getItem('users')) || {};
@@ -146,17 +139,16 @@ function addToCartFunction(userEmail, productName, productPrice, productImage, p
         users[userEmail].cart = userCart;
         localStorage.setItem('users', JSON.stringify(users));
 
-        alert('Product added to cart');
+        $('#notification')
+        .addClass('show')  
+        .fadeIn(500);
+
+   
+    setTimeout(function() {
+        $('#notification').fadeOut(1000, function() {
+            $(this).removeClass('show')
+        });
+    }, 3000); 
     }
 }
-
-function checkRegistration() {
-    const currentUserEmail = localStorage.getItem('currentUserEmail');
-
-    if (!currentUserEmail) {
-        window.location.href = 'register.html';
-    }
-}
-
-checkRegistration();
 
