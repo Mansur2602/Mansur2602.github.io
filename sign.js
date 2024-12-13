@@ -1,3 +1,10 @@
+const currentUserEmail = localStorage.getItem('currentUserEmail')
+let users = localStorage.getItem('users')
+if (users) {
+    users = JSON.parse(users)
+} 
+
+const currentUser = users[currentUserEmail]
 
 function signIn() {
     const email = document.getElementById('email').value;

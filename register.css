@@ -65,3 +65,7 @@ padding-top: 22px;
 font-size: 18px;
 text-align: center;
 }
+
+.error-message{
+    width: 400px;
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./office.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <h1 class="title">Privacy office</h1>
+    <div class="register_box">
+        <input class="register_input" id="name" type="text" placeholder="name">
+        <input class="register_input" id="email" type="email" placeholder="email">
+        <input class="register_input" id="password" type="password" placeholder="password">
+        <div class="error-message"></div>
+        <button class="change_info" onclick="updateUserInfo()">Change info</button>
+        <h2 class="or">OR</h2>
+        <button class="register_button" onclick="window.location.href = 'register.html'" >Log out</button>
+        <script src="./office.js"></script>
+    </div>
+    <div id="notification" class="notification" style="display: none;">
+        <p class="add_to_car">Information has been changed</p>
+      </div>
+</body>
+</html>
