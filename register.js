@@ -14,10 +14,17 @@ function register() {
         showError(passwordValidation)
         valid = false
     }
-
+    
     if (valid) {
         const name = document.getElementById('name').value
         const email = document.getElementById('email').value
+
+
+        if (storage[email]) {
+            alert('This email is already registered.')
+            valid = false
+        }
+    
 
         
         storage[email] = { 
@@ -60,5 +67,4 @@ function clearErrors() {
     const errorElement = document.querySelector('.error-message')
     errorElement.textContent = ''
 }
-
 

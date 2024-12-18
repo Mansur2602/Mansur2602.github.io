@@ -1,3 +1,57 @@
+.nav_box{
+    width: 1920px;
+    /* height: 148px; */
+    background-color: rgb(46, 45, 45);
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+
+
+.logo{
+ margin-top: 37px;
+ margin-left: 114px;   
+}
+
+.menu{
+    width: 292px;
+    height: 36px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 63px;
+    
+
+}
+
+.menu ul {
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+    display: flex; 
+    justify-content: space-between;
+    gap: 55px;
+}
+
+.menu a {
+    text-decoration: none;
+    font-weight: 700;
+font-size: 20px;
+color: white;
+white-space: nowrap;
+}
+
+.function{
+    width: 93px;
+    height: 34px;
+    margin-top: 57px;
+    margin-right: 120.36px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+
+
 .title{
     font-family:"Roboto Condensed", sans-serif ;
 font-weight: 700;

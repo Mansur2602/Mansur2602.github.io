@@ -146,3 +146,4 @@ function removeBuyButton() {
 }
 
 updateTotalPrice();
+

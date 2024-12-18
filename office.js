@@ -79,3 +79,4 @@ function clearErrors() {
     const errorElement = document.querySelector('.error-message')
     errorElement.textContent = ''
 }
+
